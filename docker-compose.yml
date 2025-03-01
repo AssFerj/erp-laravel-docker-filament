@@ -1,11 +1,11 @@
 services:
     # image project
-    app-laravel:
+    app-erp:
         build:
             context: .
             dockerfile: Dockerfile
         image: php:8.3-fpm
-        container_name: app-laravel
+        container_name: app-erp
         restart: unless-stopped
         tty: true
         working_dir: /var/www/
@@ -15,12 +15,12 @@ services:
         ports:
             - "9000:9000"
         networks:
-            - laravel-base
+            - laravel-erp
 
     # nginx
-    nginx-laravel:
+    nginx-erp:
         image: nginx:alpine
-        container_name: nginx-laravel
+        container_name: nginx-erp
         restart: unless-stopped
         tty: true
         ports:
@@ -30,19 +30,19 @@ services:
             - ./:/var/www
             - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
         networks:
-            - laravel-base
+            - laravel-erp
 
     # db postgres
-    db-laravel:
+    db-erp:
         platform: linux/x86_64
         image: mariadb
-        container_name: db-laravel
+        container_name: db-erp
         restart: unless-stopped
         tty: true
         ports:
             - "3306:3306"
         environment:
-            MYSQL_DATABASE: laravel
+            MYSQL_DATABASE: erp
             MYSQL_ROOT_PASSWORD: root
             SERVICE_TAGS: dev
             SERVICE_NAME: db
@@ -50,13 +50,13 @@ services:
             - ./docker/dbdata:/var/lib/mysql
             - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
         networks:
-            - laravel-base
+            - laravel-erp
 
     # phpmyadmin
-    phpmyadmin-laravel:
+    phpmyadmin-erp:
         image: phpmyadmin/phpmyadmin
         platform: linux/amd64
-        container_name: phpmyadmin_laravel
+        container_name: phpmyadmin-erp
         environment:
             - PMA_ARBITRARY=1
         restart: always
@@ -68,8 +68,8 @@ services:
             - ~/docker/phpmyadmin/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php
             - ./docker/phpmyadmin/upload.ini:/usr/local/etc/php/php.ini
         networks:
-            - laravel-base
+            - laravel-erp
 
 networks:
-    laravel-base:
+    laravel-erp:
         driver: bridge
