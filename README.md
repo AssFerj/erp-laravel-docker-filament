@@ -34,7 +34,7 @@ npm run build
 
 Acesse o container
 ```sh
-docker exec -it app bash
+docker exec -it app-erp bash
 ```
 
 Instale as dependências do projeto

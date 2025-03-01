@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
+use Illuminate\Database\Eloquent\Builder;
 use App\Models\Role;
 use App\Models\User;
 use Filament\Forms;
@@ -13,6 +14,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserResource extends Resource
 {
@@ -92,5 +94,17 @@ class UserResource extends Resource
             'create' => Pages\CreateUser::route('/create'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        $query = parent::getEloquentQuery(); // Chama a consulta padrão
+
+        $user = Auth::user();
+        if ($user && $user->hasRole('company')) {
+            return $query->where('company_id', $user->company_id);
+        }
+
+        return $query; // Retorna a consulta original se o usuário não for da empresa
     }
 }
