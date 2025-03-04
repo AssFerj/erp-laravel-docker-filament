@@ -19,6 +19,16 @@ class StockResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function getModelLabel(): string
+    {
+        return __('Stock');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Stocks');
+    }
+
     protected static bool $shouldRegisterNavigation = false;
 
     public static function form(Form $form): Form

@@ -21,6 +21,16 @@ class SaleResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-banknotes';
 
+    public static function getModelLabel(): string
+    {
+        return __('Sale');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Sales');
+    }
+
     public static function form(Form $form): Form
     {
         return $form

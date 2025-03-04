@@ -19,6 +19,16 @@ class CompanyResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-building-storefront';
 
+    public static function getModelLabel(): string
+    {
+        return __('Company');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Companies');
+    }
+
     public static function form(Form $form): Form
     {
         return $form

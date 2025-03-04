@@ -19,6 +19,16 @@ class SupplyResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
+    public static function getModelLabel(): string
+    {
+        return __('Supplie');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('Supplies');
+    }
+
     public static function form(Form $form): Form
     {
         return $form
