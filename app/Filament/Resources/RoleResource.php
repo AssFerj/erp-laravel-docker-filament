@@ -17,6 +17,8 @@ class RoleResource extends Resource
 {
     protected static ?string $model = Role::class;
 
+    protected static ?string $navigationGroup = 'Settings';
+
     public static function getModelLabel(): string
     {
         return __('Role');
@@ -54,9 +56,9 @@ class RoleResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->label('Name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('permissions.name')
-                    ->label('Permissions')
-                    ->searchable(),
+                // Tables\Columns\TextColumn::make('permissions.name')
+                //     ->label('Permissions')
+                //     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Created at')
                     ->dateTime()

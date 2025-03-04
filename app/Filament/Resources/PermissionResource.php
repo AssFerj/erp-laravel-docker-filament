@@ -17,6 +17,8 @@ class PermissionResource extends Resource
 {
     protected static ?string $model = Permission::class;
 
+    protected static ?string $navigationGroup = 'Settings';
+
     public static function getModelLabel(): string
     {
         return __('Permission');

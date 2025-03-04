@@ -63,6 +63,9 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('roles.name')
                     ->sortable()
                     ->searchable(),
+                Tables\Columns\ToggleColumn::make('isActive')
+                    ->label('Ativo')
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(format: 'd/m/Y')
                     ->sortable(),

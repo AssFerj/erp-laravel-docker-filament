@@ -49,8 +49,6 @@ class CompanyResource extends Resource
 
     public static function table(Table $table): Table
     {
-        // $companies = Company::with('plan')->get(); // Eager load the plan relationship
-        // dd($companies);
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
@@ -68,7 +66,7 @@ class CompanyResource extends Resource
                     ->sortable()
                     ->searchable(),
 
-                Tables\Columns\BooleanColumn::make('isActive')
+                Tables\Columns\ToggleColumn::make('isActive')
                     ->label('Ativo')
                     ->sortable(),
             ])

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Models\Scopes\CompanyScope;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Client extends Model
 {
@@ -16,6 +16,7 @@ class Client extends Model
         'email',
         'phone',
         'company_id',
+        'address_id',
         'user_id', // Adicionando user_id para associar um cliente a um usuário
     ];
 
@@ -27,5 +28,10 @@ class Client extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function address(): HasMany
+    {
+        return $this->hasMany(Address::class);
     }
 }
